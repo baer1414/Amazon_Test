@@ -1,5 +1,6 @@
 package com.amazon.tests;
 
+import com.amazon.utilities.Assertions;
 import com.amazon.utilities.BrowserFactory;
 import org.openqa.selenium.WebDriver;
 
@@ -15,11 +16,7 @@ public class TestCase {
 
         String actualTitle= driver.getTitle();
 
-        if (actualTitle.equals(title)){
-            System.out.println("Baslik bekledigi gibi geldi.Dogrulama gecti");
-        }else {
-            System.out.println("Baslik beklendigi gibi GELMEDI. Dogrulama GECMEDI");
-        }
+        Assertions.verifyEquals(title,actualTitle);
 
         driver.get("https://www.amazon.com.tr/");
 
@@ -30,21 +27,14 @@ public class TestCase {
 
         String actualTitle1= driver.getTitle();
 
-        if (actualTitle1.equals(title1)){
-            System.out.println("Baslik bekledigi gibi geldi.Dogrulama gecti");
-        }else {
-            System.out.println("Baslik beklendigi gibi GELMEDI. Dogrulama GECMEDI");
-        }
+        Assertions.verifyEquals(title1,actualTitle1);
 
         driver.navigate().back();
         Thread.sleep(2000);
 
         String title2=driver.getTitle();
-        if (title.equals(title2)){
-            System.out.println("Aynı");
-        }else {
-            System.out.println("Aynı değil");
-        }
+        Assertions.verifyEquals(title,title2);
+
 
         driver.navigate().forward();
         Thread.sleep(2000);
@@ -53,11 +43,10 @@ public class TestCase {
 
 
         String title3=driver.getTitle();
-        if (title1.equals(title3)){
-            System.out.println("Aynı");
-        }else {
-            System.out.println("Aynı değil");
-        }
+        Assertions.verifyEquals(title1,title3);
+
+
+
 
 
     }
